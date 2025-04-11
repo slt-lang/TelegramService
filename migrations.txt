@@ -1,0 +1,2 @@
+dotnet ef migrations add M1 --project "TelegramService.Adapters/TelegramService.Adapters.csproj" --context "TelegramService.Adapters.Database.ArticleServiceContext" --startup-project "TelegramService/TelegramService.csproj"
+dotnet ef database update 0 --project "TelegramService.Adapters/TelegramService.Adapters.csproj" --context "TelegramService.Adapters.Database.ArticleServiceContext" --startup-project "TelegramService/TelegramService.csproj"
