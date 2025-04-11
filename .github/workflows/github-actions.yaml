@@ -40,10 +40,10 @@ jobs:
           HOST=${{ secrets.SSH_HOST }}
           PORT=${{ secrets.SSH_PORT }}
           USER=${{ secrets.SSH_USER }}
-          DEPLOY_PATH=${{ repository.DEPLOY_PATH }}
-          DEPLOY_PATH2=${{ repository.DEPLOY_PATH2 }}
-          SERVICE_NAME=${{ repository.SERVICE_NAME }}
-          SERVICE_NAME2=${{ repository.SERVICE_NAME2 }}
+          DEPLOY_PATH=${{ DEPLOY_PATH }}
+          DEPLOY_PATH2=${{ DEPLOY_PATH2 }}
+          SERVICE_NAME=${{ SERVICE_NAME }}
+          SERVICE_NAME2=${{ SERVICE_NAME2 }}
 
           echo "Stopping service..."
           ssh -o StrictHostKeyChecking=no $USER@$HOST -p $PORT "sudo systemctl stop $SERVICE_NAME"
