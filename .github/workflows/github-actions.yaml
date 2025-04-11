@@ -43,7 +43,7 @@ jobs:
           DEPLOY_PATH=${{ env.DEPLOY_PATH }}
           DEPLOY_PATH2=${{ env.DEPLOY_PATH2 }}
           SERVICE_NAME=${{ env.SERVICE_NAME }}
-          SERVICE_NAME2=${{ env.SERVICE_NAME2 }
+          SERVICE_NAME2=${{ env.SERVICE_NAME2 }}
 
           echo "Stopping service..."
           ssh -o StrictHostKeyChecking=no $USER@$HOST -p $PORT "sudo systemctl stop $SERVICE_NAME"
