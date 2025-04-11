@@ -15,6 +15,7 @@ namespace TelegramService
             //builder.Services.AddNpgsql<TelegramServiceContext>(builder.Configuration.GetConnectionString("TelegramDb"));
             //builder.Services.AddTransient<ITelegramDb, TelegramDb>();
             builder.Services.AddTransient<IDateTime, DateTimeProvider>();
+            builder.Services.AddScoped<ITelegramService, Adapters.Services.TelegramService>();
             builder.Services.AddMemoryCache();
 
             var configuration = builder.Configuration.GetSection("Config").Get<Config>();
@@ -25,6 +26,18 @@ namespace TelegramService
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            // Add CORS services
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowedHosts",
+                    policy =>
+                    {
+                        policy.WithOrigins(configuration!.AllowedHosts)
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -34,8 +47,9 @@ namespace TelegramService
                 app.UseSwaggerUI();
             }
 
-            app.UseAuthorization();
+            //app.UseCors("AllowedHosts");
 
+            app.UseAuthorization();
 
             app.MapControllers();
 
