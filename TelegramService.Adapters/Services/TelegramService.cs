@@ -13,11 +13,13 @@ namespace TelegramService.Adapters.Services
     public class TelegramService(Config config) : ITelegramService
     {
         public readonly TelegramBotClient telegramBotClient = new(config.BotSettings.Token);
+        public readonly Random random = Random.Shared;
 
         public async Task SendAlertMessage(string message)
         {
             try
             {
+                await Task.Delay(500 + random.Next(100, 500));
                 await telegramBotClient.SendMessage(
                     chatId: config.BotSettings.AlertChannelId,
                     text: message
@@ -33,6 +35,7 @@ namespace TelegramService.Adapters.Services
         {
             try
             {
+                await Task.Delay(500 + random.Next(100, 500));
                 await telegramBotClient.SendMessage(
                     chatId: config.BotSettings.LogChannelId,
                     text: message
