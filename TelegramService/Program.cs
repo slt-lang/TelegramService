@@ -3,6 +3,7 @@ using TelegramService.Domain;
 using TelegramService.Domain.Logic;
 using TelegramService.Domain.Ports;
 using Microsoft.EntityFrameworkCore;
+using sltlang.Common.Common;
 
 namespace TelegramService
 {
@@ -50,6 +51,8 @@ namespace TelegramService
             //app.UseCors("AllowedHosts");
 
             app.UseAuthorization();
+
+            app.MapGet("/serviceinfo", () => ServiceInfo.GetServiceInfo(typeof(Program).Assembly)).WithGroupName("Service");
 
             app.MapControllers();
 
